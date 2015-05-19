@@ -20,29 +20,28 @@
       <form action="" role="form">
         <div class="form-group">
           <label for="name">Name:</label>
-          <input type="text" class="form-control" id="name" placeholder="Enter name.">
+          <input type="text" class="form-control" id="name" placeholder="Enter name." onchange="validator(this)">
         </div>
         <div class="form-group">
           <label for="pass">Password:</label>
-          <input type="password" class="form-control" id="pwd" placeholder="Enter password.">
+          <input type="password" class="form-control" id="pwd" placeholder="Enter password." onchange="validator(this)">
         </div>
         <div class="form-group">  
           <label for="age">Age:</label>
-          <input type="text" class="form-control" id="age" placeholder="Enter your age.">
+          <input type="number" class="form-control" id="age" placeholder="Enter your age." onchange="validator(this)">
         </div>
         <div class="form-group">  
           <label for="age">Sex:</label>&nbsp;&nbsp;
-          <input type="radio" name="sex" value="male">&nbsp;Male&nbsp;&nbsp;
-          <input type="radio" name="sex" value="female">&nbsp;Female<br />
+          <input type="radio" name="sex" value="male" onchange="validator(this)">&nbsp;Male&nbsp;&nbsp;
+          <input type="radio" name="sex" value="female" onchange="validator(this)">&nbsp;Female<br />
         </div>
         <div class="checkbox">
-          <label><input type="checkbox"> Is this form?</label>
+          <label><input type="checkbox" onchange="validator(this)"> Is this form?</label>
         </div>
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/functions.js"></script>             
   </body>
 </html>
