@@ -20,14 +20,45 @@
 			<div class="col-sm-4 col-md-3 col-lg-2 left-panel">
 				<h2>Employers</h2>
 				<div class="list-group">
-					<a href class="list-group-item" ng-repeat="user in users" ng-click="setUser($index+1)" ng-class="{ active: isSet($index+1) }">{{ user.firstName + " " + user.lastName  }}</a>
+					<a href class="list-group-item" ng-repeat="(key, user) in users" ng-click="setUser(key)" ng-class="{ active: isSet(key) }">{{ user.firstName + " " + user.lastName }}</a>
 				</div>
 			</div>
 			<div class="col-sm-8 col-md-9 col-lg-10 right-panel">
 
 				<div ui-layout class="layout-mock">
-					<div class="top-panel"></div>
-					<div class="bottom-panel"></div>
+					<div class="top-panel">
+						<table class="table table-striped table-bordered" ng-show="userSet">
+							<thead>
+								<tr>
+									<th>Dátum</th>
+									<th>Príchod</th>
+									<th>Odchod</th>
+									<th>Fond</th>
+									<th>Čas v práci</th>
+									<th>Nadriadený</th>
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng-repeat="x in userInfo.attendance">
+									<td>{{ x.date }}</td>
+									<td>{{ x.arrival }}</td>
+									<td>{{ x.departure }}</td>
+									<td>{{ x.fond }}</td>
+									<td>{{ timeAtWork(x.date, x.arrival, x.departure) | date:'h:mm' }}</td>
+									<td><a href ng-click="setUser(userInfo.supervisorId)">{{ users[userInfo.supervisorId].firstName + " " + users[userInfo.supervisorId].lastName }}</a></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+					<div class="bottom-panel">bottom</div>
 				</div>
 
 			</div>

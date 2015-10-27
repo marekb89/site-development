@@ -65,7 +65,36 @@ var users = {	"1":
 					"birthDate": "7.2.1993",
 					"position": "",
 					"bench": false,
-					"supervisorId": "",
+					"supervisorId": 1,
+					"attendance": [
+									{
+										"date": "1.10.2015",
+										"arrival": "7:00",
+										"departure": "15:11",
+										"fond": "8:00"
+									},
+									{
+										"date": "2.10.2015",
+										"arrival": "",
+										"departure": "",
+										"fond": "0:00"
+									},
+									{
+										"date": "3.10.2015",
+										"arrival": "8:30",
+										"departure": "12:30",
+										"fond": "8:00"
+									}
+								]
+				},
+				"5":
+				{
+					"firstName": "Danuška",
+					"lastName": "Danušková",
+					"birthDate": "7.2.1993",
+					"position": "",
+					"bench": false,
+					"supervisorId": 1,
 					"attendance": [
 									{
 										"date": "1.10.2015",

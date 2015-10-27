@@ -4,6 +4,23 @@ a:focus {
 	outline: none;
 }
 
+.layout-mock  .top-panel,
+.layout-mock  .bottom-panel {
+	padding: 20px;
+}
+
+@media (max-width: 767px) {
+
+	.stretch {
+		position: relative;
+	}
+
+	.layout-mock  .ui-splitbar {
+		display: none;
+	}
+
+}
+
 @media (min-width: 768px) {
 
 	html,
@@ -24,14 +41,6 @@ a:focus {
 
 	.layout-mock {
 		height: 100%;
-	}
-
-	.layout-mock  .top-panel {
-
-	}
-
-	.layout-mock  .bottom-panel {
-
 	}
 
 	.layout-mock  .ui-splitbar {
