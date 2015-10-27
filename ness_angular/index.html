@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html ng-app="">
+<html ng-app="App">
 	<head>
 		<meta charset="utf-8" />
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 		<title>AngularJS App</title>
+		<link rel="stylesheet" type="text/css" href="assets/css/ui-layout.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css" />
 		<link rel="stylesheet" type="text/css" href="assets/css/main.css" />
 		<!--[if lt IE 9]>
@@ -12,12 +13,40 @@
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 	</head>
-	<body>
+	<body ng-controller="MainController">
 
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-4 col-md-3 col-lg-2 left-panel">
+				<h2>Employers</h2>
+				<div class="list-group">
+					<a href class="list-group-item" ng-repeat="user in users" ng-click="setUser($index+1)" ng-class="{ active: isSet($index+1) }">{{ user.firstName + " " + user.lastName  }}</a>
+				</div>
+			</div>
+			<div class="col-sm-8 col-md-9 col-lg-10 right-panel">
+
+				<div ui-layout class="layout-mock">
+					<div class="top-panel"></div>
+					<div class="bottom-panel"></div>
+				</div>
+
+			</div>
+		</div>
+	</div>
 
 
 	<script type="text/javascript" src="assets/js/angular.min.js"></script>
+	<script type="text/javascript" src="assets/js/ui-layout.min.js"></script>
 	<script type="text/javascript" src="assets/js/ui-bootstrap.min.js"></script>
+
+	<!-- Modules -->
 	<script type="text/javascript" src="assets/js/app.js"></script>
+
+	<!-- Controllers -->
+	<script type="text/javascript" src="assets/js/controllers/MainController.js"></script>
+
+	<!-- Directives -->
+	<script type="text/javascript" src="assets/js/directives/user.js"></script>
+
 	</body>
 </html>
