@@ -14,10 +14,26 @@ app.controller('MainController', ['$scope', function($scope) {
 		return $scope.userSet === parseInt(userId);
 	};
 
-	$scope.timeAtWork = function(date, arrival, departure) {
-		var arrivalDate = new Date(date.split(".")[2], date.split(".")[1], date.split(".")[0], arrival.split(":")[0], arrival.split(":")[1]);
-		var departureDate = new Date(date.split(".")[2], date.split(".")[1], date.split(".")[0], departure.split(":")[0], departure.split(":")[1]);
-		return departureDate - arrivalDate;
+	$scope.timeAtWork = function(arrival, departure, date, fond) {
+
+		var arrivalDate = new Date(arrival);
+		var departureDate = new Date(departure);
+
+		var fondTime = new Date(date + "T" + fond);
+
+		var halfDay = new Date(date + "T04:00");		
+
+		var timeAtWork = new Date(departureDate - arrivalDate);
+
+		if (fondTime > halfDay) {
+			timeAtWork.setMinutes(timeAtWork.getMinutes() - 30);
+		} else if (fondTime.getMinutes() === 0 && fondTime.getHours() === 0) {
+			timeAtWork = "";
+		}
+
+		return timeAtWork;
 	};
+
+	console.log(app);
 
 }]);

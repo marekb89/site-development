@@ -4,28 +4,28 @@ var users = {	"1":
 				{
 					"firstName": "Janko",
 					"lastName": "Hraško",
-					"birthDate": "1.1.1991",
+					"birthDate": "1991-01-01",
 					"position": "",
 					"bench": false,
 					"supervisorId": "",
 					"attendance": [
 									{
-										"date": "1.10.2015",
-										"arrival": "8:00",
-										"departure": "15:11",
-										"fond": "8:00"
+										"date": "2015-10-01",
+										"arrival": "2015-10-01T10:30",
+										"departure": "2015-10-01T15:11",
+										"fond": "08:00"
 									},
 									{
-										"date": "2.10.2015",
-										"arrival": "9:15",
+										"date": "2015-10-02",
+										"arrival": "2015-10-02T09:15",
 										"departure": "",
-										"fond": "5:00"
+										"fond": "05:00"
 									},
 									{
-										"date": "3.10.2015",
-										"arrival": "6:30",
-										"departure": "19:30",
-										"fond": "8:00"
+										"date": "2015-10-03",
+										"arrival": "2015-10-03T06:30",
+										"departure": "2015-10-03T19:30",
+										"fond": "04:00"
 									}
 								]
 				},
@@ -33,28 +33,28 @@ var users = {	"1":
 				{
 					"firstName": "Majka",
 					"lastName": "Medovníková",
-					"birthDate": "5.5.1995",
+					"birthDate": "1995-05-05",
 					"position": "",
 					"bench": true,
 					"supervisorId": "",
 					"attendance": [
 									{
-										"date": "1.10.2015",
-										"arrival": "9:00",
-										"departure": "16:11",
-										"fond": "8:00"
+										"date": "2015-10-01",
+										"arrival": "2015-10-01T09:00",
+										"departure": "2015-10-01T16:11",
+										"fond": "08:00"
 									},
 									{
-										"date": "2.10.2015",
+										"date": "2015-10-02",
 										"arrival": "",
 										"departure": "",
-										"fond": "0:00"
+										"fond": "00:00"
 									},
 									{
-										"date": "3.10.2015",
-										"arrival": "7:30",
-										"departure": "17:30",
-										"fond": "8:00"
+										"date": "2015-10-03",
+										"arrival": "2015-10-03T07:30",
+										"departure": "2015-10-03T17:30",
+										"fond": "08:00"
 									}
 								]
 				},
@@ -62,28 +62,28 @@ var users = {	"1":
 				{
 					"firstName": "Danuška",
 					"lastName": "Danušková",
-					"birthDate": "7.2.1993",
+					"birthDate": "1993-02-07",
 					"position": "",
 					"bench": false,
 					"supervisorId": 1,
 					"attendance": [
 									{
-										"date": "1.10.2015",
-										"arrival": "7:00",
-										"departure": "15:11",
-										"fond": "8:00"
+										"date": "2015-10-01",
+										"arrival": "2015-10-01T07:00",
+										"departure": "2015-10-01T15:11",
+										"fond": "08:00"
 									},
 									{
-										"date": "2.10.2015",
+										"date": "2015-10-02",
 										"arrival": "",
 										"departure": "",
-										"fond": "0:00"
+										"fond": "00:00"
 									},
 									{
-										"date": "3.10.2015",
-										"arrival": "8:30",
-										"departure": "12:30",
-										"fond": "8:00"
+										"date": "2015-10-03",
+										"arrival": "2015-10-03T08:30",
+										"departure": "2015-10-03T12:30",
+										"fond": "08:00"
 									}
 								]
 				},
@@ -91,31 +91,31 @@ var users = {	"1":
 				{
 					"firstName": "Danuška",
 					"lastName": "Danušková",
-					"birthDate": "7.2.1993",
+					"birthDate": "1993-02-07",
 					"position": "",
 					"bench": false,
 					"supervisorId": 1,
 					"attendance": [
 									{
-										"date": "1.10.2015",
-										"arrival": "7:00",
-										"departure": "15:11",
-										"fond": "8:00"
+										"date": "2015-10-01",
+										"arrival": "2015-10-01T07:00",
+										"departure": "2015-10-01T15:11",
+										"fond": "08:00"
 									},
 									{
-										"date": "2.10.2015",
+										"date": "2015-10-02",
 										"arrival": "",
 										"departure": "",
-										"fond": "0:00"
+										"fond": "00:00"
 									},
 									{
-										"date": "3.10.2015",
-										"arrival": "8:30",
-										"departure": "12:30",
-										"fond": "8:00"
+										"date": "2015-10-03",
+										"arrival": "2015-10-03T08:30",
+										"departure": "2015-10-03T12:30",
+										"fond": "08:00"
 									}
 								]
 				}
 			};
 
-var app = angular.module('App', ['ui.layout']);
+var app = angular.module('App', ['ui.layout', 'users-directive']);

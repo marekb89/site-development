@@ -1,0 +1,25 @@
+/*
+app.service('mainService', function() {
+
+  // service is just a constructor function
+  // that will be called with 'new'
+
+  this.sayHello = function(name) {
+     return "Hi " + name + "!";
+  };
+
+});
+*/
+var app = angular.module('services', []);
+
+app.factory('mainService', function() {
+
+  // factory returns an object
+  // you can run some code before
+
+  return {
+    sayHello : function(name) {
+      return "Hi " + name + "!";
+    }
+  }
+});
