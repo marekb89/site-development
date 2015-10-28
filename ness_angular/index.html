@@ -13,17 +13,29 @@
 			<script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
 		<![endif]-->
 	</head>
-	<body ng-controller="MainController">
+	<body ng-controller="mainController">
 
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-4 col-md-3 col-lg-2 left-panel">
-				<user-link></user-link>
+
+				<div class="form-group">
+					<label>Vyberte obdobie: </label>
+					<select class="form-control" ng-model="selectedDate" ng-init="selectedDate='0'" ng-change="changeDate()">
+						<option value="{{ key }}" ng-repeat="(key, date) in availableDates">{{ date | date:'MMMM y' }}</option>
+					</select>
+				</div>
+
+				<div class="list-group">
+					<a href class="list-group-item" ng-repeat="(key, user) in users" ng-click="setUser(key)" ng-class="{ active: isSet(key) }">{{ user.firstName + " " + user.lastName }}</a>
+				</div>
+
 			</div>
 			<div class="col-sm-8 col-md-9 col-lg-10 right-panel">
 
 				<div ui-layout class="layout-mock">
 					<div class="top-panel">
+						
 						<table class="table table-striped table-bordered" ng-if="userSet">
 							<thead>
 								<tr>
@@ -54,6 +66,7 @@
 								</tr>
 							</tbody>
 						</table>
+
 					</div>
 					<div class="bottom-panel">bottom</div>
 				</div>
@@ -66,21 +79,7 @@
 	<script type="text/javascript" src="assets/js/angular.min.js"></script>
 	<script type="text/javascript" src="assets/js/ui-layout.min.js"></script>
 	<script type="text/javascript" src="assets/js/ui-bootstrap.min.js"></script>
-	
-	
-	<!-- Directives -->
-	<script type="text/javascript" src="assets/js/directives/users.js"></script>
-
-	<!-- Services -->
-	<script type="text/javascript" src="assets/js/services/mainService.js"></script>
-
-	<!-- Modules -->
 	<script type="text/javascript" src="assets/js/app.js"></script>
-
-	<!-- Controllers -->
-	<script type="text/javascript" src="assets/js/controllers/MainController.js"></script>
-
-	
 
 	</body>
 </html>

@@ -1,11 +1,4 @@
-/* config */
-var config = {
-	"startMonth": 8,
-	"startYear": 2015
-}
-
-/* default JSON */
-var users = {	"1": 
+			{	"1": 
 				{
 					"firstName": "Janko",
 					"lastName": "Hraško",
@@ -121,85 +114,4 @@ var users = {	"1":
 									}
 								]
 				}
-			};
-
-var app = angular.module('App', ['ui.layout']);
-
-app.controller('mainController', ['$scope', '$http', function($scope, $http) { 
-	
-	$scope.config = config;
-
-	$scope.getAvailableDates = function() {
-		var startDate = new Date($scope.config.startYear, $scope.config.startMonth-1);
-		var actualDate = new Date();
-		var availableDates = [];
-
-		while (startDate < actualDate) {
-			availableDates.unshift(new Date(startDate));
-			startDate.setMonth(startDate.getMonth() + 1);
-		}
-
-		return availableDates;
-	};
-
-	$scope.availableDates = $scope.getAvailableDates();
-	$scope.currentDate = $scope.availableDates[0];
-
-	$scope.service = function(getMethod, getParams) {
-
-		$http({
-				method: getMethod,
-				url: '/users',
-				params: getParams
-			}).then(function successCallback(response) {
-			    $scope.users = response;
-			}, function errorCallback(response) {
-			    $scope.users = users;
-		});
-
-	};
-
-	$scope.service('GET', {year: $scope.currentDate.getFullYear(), month: $scope.currentDate.getMonth()+1});
-
-	$scope.changeDate = function() {
-		$scope.currentDate = $scope.availableDates[this.selectedDate];
-		$scope.service('GET', {year: $scope.currentDate.getFullYear(), month: $scope.currentDate.getMonth()+1});
-	};
-
-	$scope.userSet;
-	$scope.userInfo;
-
-	$scope.setUser = function(userId) {
-		$scope.userSet = parseInt(userId);
-		$scope.userInfo = $scope.users[$scope.userSet];
-	};
-
-	$scope.isSet = function(userId) {
-		return $scope.userSet === parseInt(userId);
-	};
-
-	$scope.timeAtWork = function(arrival, departure, date, fond) {
-
-		var arrivalDate = new Date(arrival);
-		var departureDate = new Date(departure);
-
-		var fondTime = new Date(date + "T" + fond);
-
-		var halfDay = new Date(date + "T04:00");		
-
-		var timeAtWork = new Date(departureDate - arrivalDate);
-
-		if (fondTime > halfDay) {
-			timeAtWork.setMinutes(timeAtWork.getMinutes() - 30);
-		} else if (fondTime.getMinutes() === 0 && fondTime.getHours() === 0) {
-			timeAtWork = "";
-		}
-
-		return timeAtWork;
-	};
-
-/*
-	console.log();
-*/
-
-}]);
+			}

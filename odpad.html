@@ -1,0 +1,36 @@
+				<div class="list-group">
+					<a href class="list-group-item" ng -repeat="(key, user) in users" ng -click="setUser(key)" ng -class="{ active: isSet(key) }">{{ user.firstName + " " + user.lastName }}</a>
+				</div>
+
+
+
+						<table class="table table-striped table-bordered" ng-if="userSet">
+							<thead>
+								<tr>
+									<th>Dátum</th>
+									<th>Príchod</th>
+									<th>Odchod</th>
+									<th>Fond</th>
+									<th>Čas v práci</th>
+									<th>Nadriadený</th>
+								</tr>
+								<tr>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+									<td></td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr ng -repeat="x in userInfo.attendance">
+									<td>{{ x.date | date:'d.M.yyyy' }}</td>
+									<td>{{ x.arrival | date:'H:mm' }}</td>
+									<td>{{ x.departure | date:'H:mm' }}</td>
+									<td>{{ x.fond }}</td>
+									<td>{{ timeAtWork(x.arrival, x.departure, x.date, x.fond) | date:'H:mm' }}</td>
+									<td><a href ng-click="setUser(userInfo.supervisorId)">{{ users[userInfo.supervisorId].firstName + " " + users[userInfo.supervisorId].lastName }}</a></td>
+								</tr>
+							</tbody>
+						</table>
