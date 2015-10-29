@@ -26,4 +26,4 @@
 
 7.	Bonus uloha: Stranka ma 3 panely, vieme menit velkost jednotlivych panelov a obsah panelov sa prisposobuje aktualnej velkosti.
 
-![](https://github.com/github/training-kit/blob/master/images/professortocat.png)
+![app image](https://github.com/marekb89/site-development/blob/master/uloha.png)
