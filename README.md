@@ -1,4 +1,4 @@
-# site-development
+# site-development / Zadanie Opera
 
 1.	Primarne prosim pouzi nasledovne frameworky (nevyhnutny zaklad): http://angularjs.org/, http://getbootstrap.com/, http://angular-ui.github.io/bootstrap/
 
@@ -25,3 +25,5 @@
   f.	V pripade, ze tabulka obsahuje viac riadkov a stlpcov ako viem zobrazit, v tabulke viem scrollovat horizontalne aj vertikalne.
 
 7.	Bonus uloha: Stranka ma 3 panely, vieme menit velkost jednotlivych panelov a obsah panelov sa prisposobuje aktualnej velkosti.
+
+![](https://github.com/github/training-kit/blob/master/images/professortocat.png)
