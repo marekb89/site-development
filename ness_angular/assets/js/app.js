@@ -123,6 +123,7 @@ var users = {	"1":
 				}
 			};
 
+/* App */
 var app = angular.module('App', ['ui.layout']);
 
 app.controller('mainController', ['$scope', '$http', function($scope, $http) { 
