@@ -18,18 +18,8 @@
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-sm-4 col-md-3 col-lg-2 left-panel">
-
-				<div class="form-group">
-					<label>Vyberte obdobie: </label>
-					<select class="form-control" ng-model="selectedDate" ng-init="selectedDate='0'" ng-change="changeDate()">
-						<option value="{{ key }}" ng-repeat="(key, date) in availableDates">{{ date | date:'MMMM y' }}</option>
-					</select>
-				</div>
-
-				<div class="list-group">
-					<a href class="list-group-item" ng-repeat="(key, user) in users" ng-click="setUser(key)" ng-class="{ active: isSet(key) }">{{ user.firstName + " " + user.lastName }}</a>
-				</div>
-
+				<dates-list></dates-list>
+				<users-list></users-list>
 			</div>
 			<div class="col-sm-8 col-md-9 col-lg-10 right-panel">
 
@@ -61,7 +51,7 @@
 									<td>{{ x.arrival | date:'H:mm' }}</td>
 									<td>{{ x.departure | date:'H:mm' }}</td>
 									<td>{{ x.fond }}</td>
-									<td>{{ timeAtWork(x.arrival, x.departure, x.date, x.fond) | date:'H:mm' }}</td>
+									<td>{{ x.timeAtWork | date:'H:mm' }}</td>
 									<td><a href ng-click="setUser(userInfo.supervisorId)">{{ users[userInfo.supervisorId].firstName + " " + users[userInfo.supervisorId].lastName }}</a></td>
 								</tr>
 							</tbody>
@@ -80,6 +70,11 @@
 	<script type="text/javascript" src="assets/js/ui-layout.min.js"></script>
 	<script type="text/javascript" src="assets/js/ui-bootstrap.min.js"></script>
 	<script type="text/javascript" src="assets/js/app.js"></script>
+
+	<script type="text/javascript" src="assets/js/directives/datesList.js"></script>
+	<script type="text/javascript" src="assets/js/directives/usersList.js"></script>
+
+	<script type="text/javascript" src="assets/js/services/mainService.js"></script>
 
 	</body>
 </html>

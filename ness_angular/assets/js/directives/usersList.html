@@ -1,4 +1,3 @@
-<h2>Employees</h2>
 <div class="list-group">
 	<a href class="list-group-item" ng-repeat="(key, user) in users" ng-click="setUser(key)" ng-class="{ active: isSet(key) }">{{ user.firstName + " " + user.lastName }}</a>
 </div>
