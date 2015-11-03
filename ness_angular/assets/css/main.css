@@ -9,6 +9,18 @@ a:focus {
 	padding: 20px;
 }
 
+.good {
+	color: green;
+}
+
+.bad {
+	color: red;
+}
+
+.missing {
+	color: orange;
+}
+
 @media (max-width: 767px) {
 
 	.stretch {

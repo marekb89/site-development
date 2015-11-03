@@ -46,12 +46,12 @@
 								</tr>
 							</thead>
 							<tbody>
-								<tr ng-repeat="x in userInfo.attendance">
-									<td>{{ x.date | date:'d.M.yyyy' }}</td>
-									<td>{{ x.arrival | date:'H:mm' }}</td>
-									<td>{{ x.departure | date:'H:mm' }}</td>
-									<td>{{ x.fond }}</td>
-									<td>{{ x.timeAtWork | date:'H:mm' }}</td>
+								<tr ng-repeat="day in userInfo.attendance">
+									<td ng-bind="day.date | date:'d.M.yyyy'"></td>
+									<td ng-bind="day.arrival | date:'H:mm'"></td>
+									<td ng-bind="day.departure | date:'H:mm'"></td>
+									<td ng-bind="day.fond"></td>
+									<td><span class="glyphicon glyphicon-time" ng-class="day.timeAtWorkFlag" ng-if="day.timeAtWorkFlag"></span> <span ng-bind="day.timeAtWork | date:'H:mm'"></span></td>
 									<td><a href ng-click="setUser(userInfo.supervisorId)">{{ users[userInfo.supervisorId].firstName + " " + users[userInfo.supervisorId].lastName }}</a></td>
 								</tr>
 							</tbody>

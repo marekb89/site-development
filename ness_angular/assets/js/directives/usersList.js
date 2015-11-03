@@ -15,60 +15,46 @@ app.directive('usersList', [function() {
 				return scope.userSet === parseInt(userId);
 			};
 
+			var calculateTimeAtWork = function() {
+				for (user in scope.users) {
+					for (day in scope.users[user].attendance) {
+						
+						var currentDay = scope.users[user].attendance[day];
 
+						if (currentDay.arrival && currentDay.departure && (currentDay.fond != "00:00")) {
+							var arrivalDate = new Date(currentDay.arrival);
+							var departureDate = new Date(currentDay.departure);
 
+							var fondTime = new Date(currentDay.date + "T" + currentDay.fond);
+							var halfDay = new Date(currentDay.date + "T04:00");
+							var fullDay = new Date("1970-01-01" + "T08:00");		
+							var timeAtWork = new Date(departureDate - arrivalDate);
 
+							if (fondTime > halfDay) {
+								timeAtWork.setMinutes(timeAtWork.getMinutes() - 30);
+							}
 
+							if (fullDay < timeAtWork) {
+								timeAtWorkFlag = "good";
+							} else {
+								timeAtWorkFlag = "bad";
+							}
 
-		for (user in scope.users) {
-			for (day in scope.users[user].attendance) {
-				
+						} else {
+							timeAtWork = "";
+							if (currentDay.fond == "00:00") {
+								timeAtWorkFlag = "";
+							} else {
+								timeAtWorkFlag = "missing";
+							}
+							
+						}
 
-		var currentDay = scope.users[user].attendance[day];
-		var arrivalDate = new Date(currentDay.arrival);
-		var departureDate = new Date(currentDay.departure);
-
-		var fondTime = new Date(currentDay.date + "T" + currentDay.fond);
-
-		var halfDay = new Date(currentDay.date + "T04:00");		
-
-		var timeAtWork = new Date(departureDate - arrivalDate);
-
-		if (fondTime > halfDay) {
-			timeAtWork.setMinutes(timeAtWork.getMinutes() - 30);
-		} else if (fondTime.getMinutes() === 0 && fondTime.getHours() === 0) {
-			timeAtWork = "";
-		}
-
-		currentDay.timeAtWork = timeAtWork;
-		console.log('aha');
-
-			}
-		}
-	
-
-/*
-		var arrivalDate = new Date(arrival);
-		var departureDate = new Date(departure);
-
-		var fondTime = new Date(date + "T" + fond);
-
-		var halfDay = new Date(date + "T04:00");		
-
-		var timeAtWork = new Date(departureDate - arrivalDate);
-
-		if (fondTime > halfDay) {
-			timeAtWork.setMinutes(timeAtWork.getMinutes() - 30);
-		} else if (fondTime.getMinutes() === 0 && fondTime.getHours() === 0) {
-			timeAtWork = "";
-		}
-
-		//return timeAtWork;
-	};
-*/
-
-
-
+						currentDay.timeAtWork = timeAtWork;
+						currentDay.timeAtWorkFlag = timeAtWorkFlag;
+					}
+				}
+			}();
 			
 		}
 	}
