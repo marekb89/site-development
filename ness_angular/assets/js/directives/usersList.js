@@ -15,7 +15,64 @@ app.directive('usersList', [function() {
 				return scope.userSet === parseInt(userId);
 			};
 
-			var calculateTimeAtWork = function() {
+
+				for (user in scope.users) {
+					var fondMinutesMonth = 0;
+					var minutesAtWorkMonth = 0;
+
+					for (day in scope.users[user].attendance) {
+						
+						var currentDay = scope.users[user].attendance[day];
+
+						if (currentDay.arrival && currentDay.departure && (currentDay.fond != "00:00")) {
+
+							var arrivalDate = new Date(currentDay.arrival);
+							var departureDate = new Date(currentDay.departure);
+							var fondTime = new Date(currentDay.date + "T" + currentDay.fond);
+
+							var arrivalMinutes = arrivalDate.getHours() * 60 + arrivalDate.getMinutes();
+							var departureMinutes = departureDate.getHours() * 60 + departureDate.getMinutes();
+							var fondMinutes = fondTime.getHours() * 60 + fondTime.getMinutes();
+
+							var minutesAtWork = departureMinutes - arrivalMinutes;
+
+							if (fondMinutes > 4 * 60) {
+								minutesAtWork - 30;
+							}
+
+							if (8 * 60 < minutesAtWork) {
+								timeAtWorkFlag = "good";
+							} else {
+								timeAtWorkFlag = "bad";
+							}
+
+						} else {
+							minutesAtWork = 0;
+							if (currentDay.fond == "00:00") {
+								timeAtWorkFlag = "";
+							} else {
+								timeAtWorkFlag = "missing";
+							}
+							
+						}
+
+						fondMinutesMonth = fondMinutesMonth + fondMinutes;
+						minutesAtWorkMonth = minutesAtWorkMonth + minutesAtWork;
+
+						if (minutesAtWork) { timeAtWork = new Date(minutesAtWork * 60 * 1000); } else { timeAtWork = ""; }
+
+						currentDay.timeAtWork = timeAtWork;
+						currentDay.timeAtWorkFlag = timeAtWorkFlag;
+
+					}
+
+					scope.users[user].fondTimeMonth = Math.floor(fondMinutesMonth / 60) + ":" + fondMinutesMonth % 60;
+					scope.users[user].timeAtWorkMonth = Math.floor(minutesAtWorkMonth / 60) + ":" + minutesAtWorkMonth % 60;
+					scope.users[user].percentTimeAtWork = ((minutesAtWorkMonth / fondMinutesMonth) * 100).toFixed(2);
+
+				}
+
+				/*			
 				for (user in scope.users) {
 					for (day in scope.users[user].attendance) {
 						
@@ -54,7 +111,8 @@ app.directive('usersList', [function() {
 						currentDay.timeAtWorkFlag = timeAtWorkFlag;
 					}
 				}
-			}();
+				*/
+			
 			
 		}
 	}
