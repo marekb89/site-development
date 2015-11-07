@@ -34,33 +34,18 @@ app.controller('mainController', ['$scope', '$http', 'mainService', function($sc
 		$scope.getUsers($scope.config.apiUrl, {year: $scope.currentDate.getFullYear(), month: $scope.currentDate.getMonth()+1});
 	};
 
-	
-
-	
-	/*
-	$scope.timeAtWork = function(arrival, departure, date, fond) {
-
-		var arrivalDate = new Date(arrival);
-		var departureDate = new Date(departure);
-
-		var fondTime = new Date(date + "T" + fond);
-
-		var halfDay = new Date(date + "T04:00");		
-
-		var timeAtWork = new Date(departureDate - arrivalDate);
-
-		if (fondTime > halfDay) {
-			timeAtWork.setMinutes(timeAtWork.getMinutes() - 30);
-		} else if (fondTime.getMinutes() === 0 && fondTime.getHours() === 0) {
-			timeAtWork = "";
-		}
-
-		return timeAtWork;
-	};
-	*/
-
-/*
-	console.log();
-*/
-
 }]);
+
+app.filter('hoursMinutes', function() {
+	return function(input) {
+		if (!input) {
+			return input;
+		} else {
+			var hours = Math.floor(input / 60);          
+			var minutes = input % 60;
+			if (minutes < 10) { minutes = "0" + minutes };
+			var time = hours + ":" + minutes;			
+			return time;
+		}
+	};
+});
