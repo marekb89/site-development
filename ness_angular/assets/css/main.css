@@ -21,14 +21,18 @@ a:focus {
 	color: orange;
 }
 
-[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
-  display: none !important;
+form .btn {
+	width: 100%;
 }
 
 @media (max-width: 767px) {
 
 	.stretch {
 		position: relative;
+	}
+
+	.layout-mock .top-panel {
+		overflow-y: scroll;
 	}
 
 	.layout-mock  .ui-splitbar {
@@ -59,8 +63,20 @@ a:focus {
 		height: 100%;
 	}
 
+	.layout-mock .top-panel {
+		overflow: scroll;
+	}
+
+	.layout-mock .bottom-panel {
+		overflow-y: scroll;
+	}
+
 	.layout-mock  .ui-splitbar {
 		background-color: #337AB7;
+	}
+
+	form .btn {
+		margin-top: 25px;
 	}
 
 }

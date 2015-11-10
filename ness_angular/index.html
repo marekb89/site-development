@@ -27,16 +27,7 @@
 						<attendance-table ng-if="userSet"></attendance-table>
 					</div>
 					<div class="bottom-panel">
-
-						<div ng-if="userSet">
-							<span>Fond na mesiac: </span>
-							<span ng-bind="userInfo.fondTimeMonth | toHoursMinutes"></span><br />
-							<span>Čas v práci za mesiac: </span>
-							<span ng-bind="userInfo.timeAtWorkMonth | toHoursMinutes"></span><br />
-							<span>Pomer času v práci oproti fondu: </span>
-							<span ng-bind="userInfo.percentTimeAtWork + '%'"></span>
-						</div>
-						
+						<user-info ng-if="userSet"></user-info>
 					</div>
 				</div>
 			</div><!-- /.right-panel -->
@@ -52,6 +43,7 @@
 	<script type="text/javascript" src="assets/js/directives/datesList.js"></script>
 	<script type="text/javascript" src="assets/js/directives/usersList.js"></script>
 	<script type="text/javascript" src="assets/js/directives/attendanceTable.js"></script>
+	<script type="text/javascript" src="assets/js/directives/userInfo.js"></script>
 
 	<script type="text/javascript" src="assets/js/services/mainService.js"></script>
 

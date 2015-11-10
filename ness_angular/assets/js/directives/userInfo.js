@@ -1,12 +1,12 @@
 var app = angular.module('App');
 
-app.directive('attendanceTable', ['mainService', function(mainService) {
+app.directive('userInfo', ['mainService', function(mainService) {
 	return {
 		restrict: 'E',
-		templateUrl: 'assets/js/directives/attendanceTable.html',
+		templateUrl: 'assets/js/directives/userInfo.html',
 		link: function(scope) {
 
-			scope.updateTime = function() {
+			scope.updateUserInfo = function() {
 				mainService.updateUser(scope.config.apiUrl, scope.userSet, scope.users[scope.userSet])
 				.then(
 					function (result) {

@@ -1,0 +1,54 @@
+<div>
+	<div class="row">
+		<div class="col-xs-12">
+			<h4>Informácie o zamestnancovi:</h4>
+		</div>
+		<div class="col-xs-12 col-md-4">
+			<div class="alert alert-info" role="alert">
+				<span><strong>Čas v práci: </strong></span>
+				<span ng-bind="userInfo.timeAtWorkMonth | toHoursMinutes"></span>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<div class="alert alert-info" role="alert">
+				<span><strong>Fond na mesiac: </strong></span>
+				<span ng-bind="userInfo.fondTimeMonth | toHoursMinutes"></span>
+			</div>
+		</div>
+		<div class="col-xs-12 col-sm-6 col-md-4">
+			<div class="alert alert-info" role="alert">
+				<span><strong>Dochádzka: </strong></span>
+				<span ng-bind="userInfo.percentTimeAtWork + '%'"></span>
+			</div>
+		</div>
+		<form ng-submit="updateUserInfo()">
+			<div class="col-xs-12 col-sm-6 col-md-4 form-group">
+				<label>Meno:</label>
+				<input type="text" class="form-control" ng-model="userInfo.firstName" />
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-4 form-group">
+				<label>Priezvisko:</label>
+				<input type="text" class="form-control" ng-model="userInfo.lastName" />
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-4 form-group">
+				<label>Dátum narodenia:</label>
+				<input type="text" class="form-control" ng-model="userInfo.birthDate" />
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-4 form-group">
+				<label>Pozícia:</label>
+				<select class="form-control">
+					<option>1</option>
+					<option>2</option>
+					<option>3</option>
+				</select>
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-4 form-group">
+				<label>Bench: </label><br />
+				<input type="checkbox" ng-model="userInfo.bench" />
+			</div>
+			<div class="col-xs-12 col-sm-6 col-md-4 form-group">
+				<button type="submit" class="btn btn-primary">Uložiť</button>
+			</div>
+		</form>
+	</div>
+</div>
