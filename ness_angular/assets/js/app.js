@@ -1,4 +1,4 @@
-/* config */
+/* Config */
 var config = {
 	"apiUrl": "/users",
 	"startMonth": 8,
@@ -28,7 +28,7 @@ app.filter('toMinutes', function() {
 		if (!time) {
 			return time;
 		} else {		
-			return parseInt(time.split(":")[0].slice(-2)) * 60 + parseInt(time.split(":")[1].slice(0, 2));
+			return parseInt(time.split(":")[0]) * 60 + parseInt(time.split(":")[1]);
 		}
 	};
 });

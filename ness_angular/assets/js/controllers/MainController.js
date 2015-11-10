@@ -17,9 +17,4 @@ app.controller('mainController', ['$scope', '$http', 'mainService', function($sc
 
 	$scope.getUsers($scope.config.apiUrl, {year: $scope.currentDate.getFullYear(), month: $scope.currentDate.getMonth()+1});
 
-	$scope.changeDate = function() {
-		$scope.currentDate = $scope.availableDates[this.selectedDate];
-		$scope.getUsers($scope.config.apiUrl, {year: $scope.currentDate.getFullYear(), month: $scope.currentDate.getMonth()+1});
-	};
-
 }]);

@@ -20,45 +20,14 @@
 			<div class="col-sm-4 col-md-3 col-lg-3 left-panel">
 				<dates-list></dates-list>
 				<users-list></users-list>
-			</div>
+			</div><!-- /.left-panel -->
 			<div class="col-sm-8 col-md-9 col-lg-9 right-panel">
-
 				<div ui-layout class="layout-mock">
 					<div class="top-panel">
-						
-						<table class="table table-striped table-bordered" ng-if="userSet">
-							<thead>
-								<tr>
-									<th>Dátum</th>
-									<th>Príchod</th>
-									<th>Odchod</th>
-									<th>Fond</th>
-									<th>Čas v práci</th>
-									<th>Nadriadený</th>
-								</tr>
-								<tr>
-									<td><input type="text" ng-model="search.date"></td>
-									<td><input type="text" ng-model="search.arrival"></td>
-									<td><input type="text" ng-model="search.departure"></td>
-									<td><input type="text" ng-model="search.fond"></td>
-									<td><input type="text" ng-model="search.timeAtWork"></td>
-									<td><input type="text" ng-model="search.supervisorName"></td>
-								</tr>
-							</thead>
-							<tbody>
-								<tr ng-repeat="day in userInfo.attendance | filter : search track by $index">
-									<td ng-bind="day.date | date:'d.M.yyyy' "></td>
-									<td><input type="text" ng-value="day.arrival"  /></td>
-									<td><input type="text" ng-value="day.departure"  /></td>
-									<td ng-bind="day.fond"></td>
-									<td><span class="glyphicon glyphicon-time" ng-class="day.timeAtWorkFlag" ng-if="day.timeAtWorkFlag"></span> <span ng-bind="day.timeAtWork"></span></td>
-									<td><a href ng-click="setUser(userInfo.supervisorId)" ng-bind="day.supervisorName"></a></td>
-								</tr>
-							</tbody>
-						</table>
-
+						<attendance-table ng-if="userSet"></attendance-table>
 					</div>
 					<div class="bottom-panel">
+
 						<div ng-if="userSet">
 							<span>Fond na mesiac: </span>
 							<span ng-bind="userInfo.fondTimeMonth | toHoursMinutes"></span><br />
@@ -67,12 +36,12 @@
 							<span>Pomer času v práci oproti fondu: </span>
 							<span ng-bind="userInfo.percentTimeAtWork + '%'"></span>
 						</div>
+						
 					</div>
 				</div>
-
-			</div>
-		</div>
-	</div>
+			</div><!-- /.right-panel -->
+		</div><!-- /.row -->
+	</div><!-- /.container-fluid -->
 
 
 	<script type="text/javascript" src="assets/js/angular.min.js"></script>
@@ -82,6 +51,7 @@
 
 	<script type="text/javascript" src="assets/js/directives/datesList.js"></script>
 	<script type="text/javascript" src="assets/js/directives/usersList.js"></script>
+	<script type="text/javascript" src="assets/js/directives/attendanceTable.js"></script>
 
 	<script type="text/javascript" src="assets/js/services/mainService.js"></script>
 

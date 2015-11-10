@@ -15,6 +15,12 @@ app.directive('datesList', [function() {
 			}
 
 			scope.availableDates = availableDates;
+
+			scope.changeDate = function() {
+				scope.currentDate = scope.availableDates[this.selectedDate];
+				scope.getUsers(scope.config.apiUrl, {year: scope.currentDate.getFullYear(), month: scope.currentDate.getMonth()+1});
+			};
+
 		}
 	}
 }]);

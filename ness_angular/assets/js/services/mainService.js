@@ -5,21 +5,67 @@ app.service('mainService', ['$http', '$q', '$filter', function($http, $q, $filte
     var deferred = $q.defer();
  
     this.getUsers = function (getUrl, getParams) {
+        var firstRequest = true;
         return $http.get(getUrl, {params: getParams})
             .then(function (response) {
-                response.data = addMethods(response.data);
+                response.data = dataCalculation(response.data);
                 deferred.resolve(response.data);
                 return deferred.promise;
             }, function (response) {
-                addMethods(users);
-                response.defaultData = users;
+                if (firstRequest) {
+                    response.defaultData = dataCalculation(users);
+                    firstRequest = false;
+                }
                 deferred.reject(response);
                 return deferred.promise;
             }
         );
     };
 
-    var addMethods = function(usersObj) {
+
+    this.updateAttendance = function (getUrl, userId, getData) {
+      var url = getUrl + "/" + userId;
+      var userData = toIsoDateStrings(getData);
+        return $http.put(url, userData)
+            .then(function (response) {
+                var usersObj = {};
+                usersObj[userId] = userData;
+                response.data = dataCalculation(usersObj);
+                deferred.resolve(response.data);
+                return deferred.promise;
+            }, function (response) {
+                var usersObj = {};
+                usersObj[userId] = userData;
+                response.defaultData = dataCalculation(usersObj);
+                deferred.reject(response);
+                return deferred.promise;
+            }
+        );
+    };
+
+
+    var toIsoDateStrings = function(usersObj) {
+
+      var dateToIsoString = function(date) {
+        var dateArray = date.split(".");
+        var month = parseInt(dateArray[1]);
+        var day = parseInt(dateArray[0]);
+        if (month < 10) {month = "0" + month};
+        if (day < 10) {day = "0" + day};
+        return dateArray[2] + "-" + month + "-" + day;
+      };
+
+      for (day in usersObj.attendance) {
+        var currentDay = usersObj.attendance[day];
+        usersObj.attendance[day].date = dateToIsoString(currentDay.date);
+
+      }
+
+      return usersObj;
+    };
+
+
+    var dataCalculation = function(usersObj) {
 
       var timeAtWorkMonth = function(user) {
         var timeSummary = 0;
@@ -90,17 +136,21 @@ app.service('mainService', ['$http', '$q', '$filter', function($http, $q, $filte
       for (user in usersObj) {
 
         for (day in usersObj[user].attendance) {
-          usersObj[user].attendance[day].arrival = $filter('isoDateToHoursMinutes')(usersObj[user].attendance[day].arrival);
-          usersObj[user].attendance[day].departure = $filter('isoDateToHoursMinutes')(usersObj[user].attendance[day].departure);
-
-          usersObj[user].attendance[day].timeAtWork = $filter('toHoursMinutes')(timeAtWork(user, day));
-          usersObj[user].attendance[day].timeAtWorkFlag = timeAtWorkFlag(user, day);
-          usersObj[user].attendance[day].supervisorName = supervisorName(user);
+          var currentDay = usersObj[user].attendance[day];
+          var currentDayDate = new Date(currentDay.date);
+          currentDay.date = currentDayDate.getDate() + "." + (currentDayDate.getMonth() + 1) + "." + currentDayDate.getFullYear();
+          currentDay.arrival = $filter('isoDateToHoursMinutes')(currentDay.arrival);
+          currentDay.departure = $filter('isoDateToHoursMinutes')(currentDay.departure);
+          currentDay.fond = $filter('isoDateToHoursMinutes')(currentDay.fond);
+          currentDay.timeAtWork = $filter('toHoursMinutes')(timeAtWork(user, day));
+          currentDay.timeAtWorkFlag = timeAtWorkFlag(user, day);
+          currentDay.supervisorName = supervisorName(user);
         }
 
-        usersObj[user].timeAtWorkMonth = timeAtWorkMonth(user);
-        usersObj[user].fondTimeMonth = fondTimeMonth(user);
-        usersObj[user].percentTimeAtWork = percentTimeAtWork(user);
+        var currentUser = usersObj[user];
+        currentUser.timeAtWorkMonth = timeAtWorkMonth(user);
+        currentUser.fondTimeMonth = fondTimeMonth(user);
+        currentUser.percentTimeAtWork = percentTimeAtWork(user);
 
       }
 
@@ -222,7 +272,7 @@ var users = { "1":
                           "date": "2015-10-01",
                           "arrival": "07:00",
                           "departure": "15:11",
-                          "fond": "08:00"
+                          "fond": "8:00"
                         },
                         {
                           "date": "2015-10-02",
