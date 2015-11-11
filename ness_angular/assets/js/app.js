@@ -4,6 +4,7 @@ var config = {
 	"startMonth": 8,
 	"startYear": 2015,
 	"availablePositions": {
+		"": "Žiadna pozícia",
 		"manager": "Manager",
 		"team-leader": "Team leader",
 		"developer": "Developer"
@@ -11,7 +12,7 @@ var config = {
 }
 
 /* App */
-var app = angular.module('App', ['ui.layout']);
+var app = angular.module('App', ['ui.layout', 'ui.mask']);
 
 /* Filters */
 app.filter('toHoursMinutes', function() {
@@ -21,6 +22,7 @@ app.filter('toHoursMinutes', function() {
 		} else {
 			var hours = Math.floor(input / 60);          
 			var minutes = input % 60;
+			if (hours < 10) { hours = "0" + hours };
 			if (minutes < 10) { minutes = "0" + minutes };
 			var time = hours + ":" + minutes;			
 			return time;
@@ -42,8 +44,10 @@ app.filter('isoDateToHoursMinutes', function() {
 	return function(time) {
 		if (!time) {
 			return time;
-		} else {		
-			return time.split(":")[0].slice(-2) + ":" + time.split(":")[1].slice(0, 2);
+		} else {
+		var hours = parseInt(time.split(":")[0].slice(-2));
+		if (hours < 10) { hours = "0" + hours; }	
+			return hours + ":" + time.split(":")[1].slice(0, 2);
 		}
 	};
 });

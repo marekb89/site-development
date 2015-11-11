@@ -108,7 +108,11 @@ app.service('mainService', ['$http', '$q', '$filter', function($http, $q, $filte
         },
         toLocalDateString: function(date) {
             var currentDayDate = new Date(date);
-            return currentDayDate.getDate() + "." + (currentDayDate.getMonth() + 1) + "." + currentDayDate.getFullYear();
+            var day = currentDayDate.getDate();
+            var month = (currentDayDate.getMonth() + 1);
+            if (day < 10) { day = "0" + day; };
+            if (month < 10) { month = "0" + month; };
+            return day + "." + month + "." + currentDayDate.getFullYear();
         },
         toIsoDateString: function(date) {
             var dateArray = date.split(".");

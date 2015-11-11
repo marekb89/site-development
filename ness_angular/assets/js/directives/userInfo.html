@@ -22,6 +22,11 @@
 			</div>
 		</div>
 		<form ng-submit="updateUserInfo()">
+			<div class="col-xs-12" ng-if="formValidationError">
+				<div class="alert alert-danger" role="alert">
+					<span><strong>Chyba:</strong> položky <em>meno</em>, <em>priezvisko</em> a <em>dátum narodenia</em> musia byť vyplnené.</span>
+				</div>
+			</div>
 			<div class="col-xs-12 col-sm-6 col-md-4 form-group">
 				<label>Meno:</label>
 				<input type="text" class="form-control" ng-model="userInfo.firstName" />
@@ -32,7 +37,7 @@
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-4 form-group">
 				<label>Dátum narodenia:</label>
-				<input type="text" class="form-control" ng-model="userInfo.birthDate" />
+				<input type="text" class="form-control" ng-model="userInfo.birthDate" ui-mask="99.99.9999" model-view-value="true" />
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-4 form-group">
 				<label>Pozícia:</label>

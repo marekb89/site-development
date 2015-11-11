@@ -9,16 +9,21 @@ app.directive('userInfo', ['mainService', function(mainService) {
 			scope.availablePositions = scope.config.availablePositions;
 
 			scope.updateUserInfo = function() {
-				mainService.updateUser(scope.config.apiUrl, scope.userSet, scope.users[scope.userSet])
-				.then(
-					function (result) {
-		                scope.users = result;
-		            },
-		            function (error) {
-		                scope.users = error.defaultData;
-		            }
-				);
-
+				scope.formValidationError = false;
+				var userObj = scope.users[scope.userSet];
+				if (userObj.firstName && userObj.lastName && userObj.birthDate) {
+					mainService.updateUser(scope.config.apiUrl, scope.userSet, userObj)
+					.then(
+						function (result) {
+			                scope.users = result;
+			            },
+			            function (error) {
+			                scope.users = error.defaultData;
+			            }
+					);
+				} else {
+					scope.formValidationError = true;
+				}
 			};
 
 		}

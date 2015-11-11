@@ -9,19 +9,19 @@
 			<th>Nadriadený</th>
 		</tr>
 		<tr>
-			<td><input type="text" ng-model="search.date"></td>
-			<td><input type="text" ng-model="search.arrival"></td>
-			<td><input type="text" ng-model="search.departure"></td>
-			<td><input type="text" ng-model="search.fond"></td>
-			<td><input type="text" ng-model="search.timeAtWork"></td>
-			<td><input type="text" ng-model="search.supervisorName"></td>
+			<td><input type="text" ng-model="search.date" ui-mask="99.99.9999" model-view-value="true" /></td>
+			<td><input type="text" ng-model="search.arrival" ui-mask="99:99" model-view-value="true" /></td>
+			<td><input type="text" ng-model="search.departure" ui-mask="99:99" model-view-value="true" /></td>
+			<td><input type="text" ng-model="search.fond" ui-mask="99:99" model-view-value="true" /></td>
+			<td><input type="text" ng-model="search.timeAtWork" ui-mask="99:99" model-view-value="true" /></td>
+			<td><input type="text" ng-model="search.supervisorName" /></td>
 		</tr>
 	</thead>
 	<tbody>
 		<tr ng-repeat="day in userInfo.attendance | filter : search track by $index">
 			<td ng-bind="day.date"></td>
-			<td><input type="text" ng-model="day.arrival" ng-model-options="{ updateOn: 'blur' }" ng-change="updateTime()" /></td>
-			<td><input type="text" ng-model="day.departure" ng-model-options="{ updateOn: 'blur' }" ng-change="updateTime()" /></td>
+			<td><input type="text" ng-model="day.arrival" ng-model-options="{ updateOn: 'blur' }" ng-change="updateTime()" ui-mask="99:99" model-view-value="true" ng-if="day.fond != '00:00'" /></td>
+			<td><input type="text" ng-model="day.departure" ng-model-options="{ updateOn: 'blur' }" ng-change="updateTime()" ui-mask="99:99" model-view-value="true" ng-if="day.fond != '00:00'" /></td>
 			<td ng-bind="day.fond"></td>
 			<td><span class="glyphicon glyphicon-time" ng-class="day.timeAtWorkFlag" ng-if="day.timeAtWorkFlag"></span> <span ng-bind="day.timeAtWork"></span></td>
 			<td><a href ng-click="setUser(day.supervisorId)" ng-bind="day.supervisorName"></a></td>
