@@ -6,6 +6,8 @@ app.directive('userInfo', ['mainService', function(mainService) {
 		templateUrl: 'assets/js/directives/userInfo.html',
 		link: function(scope) {
 
+			scope.availablePositions = scope.config.availablePositions;
+
 			scope.updateUserInfo = function() {
 				mainService.updateUser(scope.config.apiUrl, scope.userSet, scope.users[scope.userSet])
 				.then(

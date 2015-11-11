@@ -2,7 +2,12 @@
 var config = {
 	"apiUrl": "/users",
 	"startMonth": 8,
-	"startYear": 2015
+	"startYear": 2015,
+	"availablePositions": {
+		"manager": "Manager",
+		"team-leader": "Team leader",
+		"developer": "Developer"
+	}
 }
 
 /* App */

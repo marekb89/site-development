@@ -172,7 +172,7 @@ var users = { "1":
                 "firstName": "Janko",
                 "lastName": "Hraško",
                 "birthDate": "1991-01-01",
-                "position": "",
+                "position": "manager",
                 "bench": false,
                 "attendance": [
                         {
@@ -217,7 +217,7 @@ var users = { "1":
                 "firstName": "Majka",
                 "lastName": "Medovníková",
                 "birthDate": "1995-05-05",
-                "position": "",
+                "position": "team-leader",
                 "bench": true,
                 "attendance": [
                         {
@@ -248,7 +248,7 @@ var users = { "1":
                 "firstName": "Danuška",
                 "lastName": "Danušková",
                 "birthDate": "1993-02-07",
-                "position": "",
+                "position": "developer",
                 "bench": false,
                 "attendance": [
                         {

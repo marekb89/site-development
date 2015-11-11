@@ -36,10 +36,8 @@
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-4 form-group">
 				<label>Pozícia:</label>
-				<select class="form-control">
-					<option>1</option>
-					<option>2</option>
-					<option>3</option>
+				<select class="form-control" ng-model="userInfo.position">
+					<option value="{{ key }}" ng-repeat="(key, postion) in availablePositions" ng-bind="postion"></option>
 				</select>
 			</div>
 			<div class="col-xs-12 col-sm-6 col-md-4 form-group">
