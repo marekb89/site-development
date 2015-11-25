@@ -1,6 +1,0 @@
-<div class="list-group">
-	<a href class="list-group-item" ng-repeat="(key, user) in users" ng-click="setUser(key)" ng-class="{ active: isSet(key) }">
-		<span class="glyphicon glyphicon-exclamation-sign bad" ng-if="user.percentTimeAtWork < 80"></span>
-		<span ng-bind="user.fullName"></span>
-	</a>
-</div>

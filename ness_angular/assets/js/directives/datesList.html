@@ -1,6 +1,0 @@
-<div class="form-group">
-	<label>Vyberte obdobie: </label>
-	<select class="form-control" ng-model="selectedDate" ng-init="selectedDate='0'" ng-change="changeDate()">
-		<option value="{{ key }}" ng-repeat="(key, date) in availableDates" ng-bind="::date | date:'MMMM y'"></option>
-	</select>
-</div>
